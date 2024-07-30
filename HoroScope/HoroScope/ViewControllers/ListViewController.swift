@@ -43,13 +43,14 @@ class ListViewController: UIViewController, UITableViewDataSource {
     
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let viewController = segue.destination as! DetailViewController
-        let indexPath = tableView.indexPathForSelectedRow!
-        viewController.horoscope = horoscopeList[indexPath.row]
+        
+        if segue.identifier == "navigateToDetail" {
+            let viewController = segue.destination as! DetailViewController
+            let indexPath = tableView.indexPathForSelectedRow!
+            viewController.horoscope = horoscopeList[indexPath.row]
+            tableView.deselectRow(at: indexPath, animated: false)
+        }
     }
-    
-    
-
 
 }
 

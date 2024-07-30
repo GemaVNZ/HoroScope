@@ -59,7 +59,7 @@
                                             <outlet property="dateLabel" destination="O4g-Om-YLf" id="2VI-99-GJH"/>
                                             <outlet property="logoImageView" destination="VAa-5O-OPx" id="UMk-zs-dD0"/>
                                             <outlet property="nameLabel" destination="iFf-u0-2IU" id="bD4-Pp-J3D"/>
-                                            <segue destination="9Hn-sC-NaT" kind="push" identifier="showDetail" id="sZe-1c-BOP"/>
+                                            <segue destination="9Hn-sC-NaT" kind="push" identifier="navigateToDetail" id="sZe-1c-BOP"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -74,7 +74,9 @@
                             <constraint firstItem="6qr-aI-jUp" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="goJ-At-4Wm"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Horoscopo" id="Lqd-CZ-ezz"/>
+                    <navigationItem key="navigationItem" title="Horoscopo" id="Lqd-CZ-ezz">
+                        <barButtonItem key="backBarButtonItem" title=" " id="FwH-jz-rhd"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="6qr-aI-jUp" id="67P-vD-G1K"/>
                     </connections>
