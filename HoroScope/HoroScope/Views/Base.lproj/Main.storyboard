@@ -135,6 +135,10 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="4Ed-nw-9fY">
+                                        <rect key="frame" x="170" y="171" width="20" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
@@ -179,6 +183,7 @@
                         <outlet property="dateLabel" destination="F0v-dU-l8B" id="P0G-Ec-B6D"/>
                         <outlet property="descriptionTextView" destination="Gsy-JM-eur" id="Cgs-SA-okj"/>
                         <outlet property="favoriteBarButton" destination="bTy-MG-XNz" id="vp3-yZ-XP0"/>
+                        <outlet property="loading" destination="4Ed-nw-9fY" id="S89-fW-qQa"/>
                         <outlet property="logoImageView" destination="IEA-ho-K4S" id="0EH-U5-BUu"/>
                         <outlet property="nameLabel" destination="VdR-CK-RA8" id="okU-zz-CHz"/>
                         <outlet property="timeSegmentControl" destination="ox9-hR-Jpo" id="xVQ-FV-ddS"/>

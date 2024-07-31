@@ -23,6 +23,9 @@ class DetailViewController: UIViewController {
     
     @IBOutlet weak var descriptionTextView: UITextView!
     
+    
+    @IBOutlet weak var loading: UIActivityIndicatorView!
+    
     @IBOutlet weak var timeSegmentControl: UISegmentedControl!
     
     //Creo la variable del Bar Button Item para poder acceder a ella.
@@ -108,11 +111,13 @@ class DetailViewController: UIViewController {
             
             Task {
                 do {
+                    loading.isHidden = false
                     let luck = try await HoroscopeProvider.getHoroscopeLuck(horoscopeId: horoscopeId, timePeriod: timePeriod)
                     updateUIWithHoroscope(luck: luck)
                 } catch {
                     print("Error fetching horoscope: \(error)")
                 }
+                loading.isHidden = true
             }
         }
     
