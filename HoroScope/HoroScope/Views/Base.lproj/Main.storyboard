@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -25,7 +26,7 @@
                                 </connections>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="6qr-aI-jUp">
-                                <rect key="frame" x="1" y="59" width="393" height="759"/>
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" rowHeight="100" id="mxl-0I-QeQ" customClass="HoroscopeViewCell" customModule="HoroScope" customModuleProvider="target">
@@ -53,10 +54,16 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TOr-eg-HW2">
+                                                    <rect key="frame" x="320" y="37" width="34" height="28"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <imageReference key="image" image="heart.fill" catalog="system" renderingMode="original"/>
+                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="dateLabel" destination="O4g-Om-YLf" id="2VI-99-GJH"/>
+                                            <outlet property="favoriteImageView" destination="TOr-eg-HW2" id="C6m-Hz-X83"/>
                                             <outlet property="logoImageView" destination="VAa-5O-OPx" id="UMk-zs-dD0"/>
                                             <outlet property="nameLabel" destination="iFf-u0-2IU" id="bD4-Pp-J3D"/>
                                             <segue destination="9Hn-sC-NaT" kind="push" identifier="navigateToDetail" id="sZe-1c-BOP"/>
@@ -119,14 +126,28 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nsR-qy-OOu" userLabel="Description">
                                 <rect key="frame" x="16" y="337" width="361" height="456"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Gsy-JM-eur">
+                                        <rect key="frame" x="8" y="8" width="353" height="346"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="textColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ox9-hR-Jpo">
                                 <rect key="frame" x="16" y="277" width="361" height="32"/>
                                 <segments>
-                                    <segment title="Today"/>
-                                    <segment title=""/>
+                                    <segment title="Daily"/>
+                                    <segment title="Weekly"/>
+                                    <segment title="Monthly"/>
                                 </segments>
+                                <connections>
+                                    <action selector="segmentChanged:" destination="9Hn-sC-NaT" eventType="valueChanged" id="5BR-Dx-1mz"/>
+                                </connections>
                             </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="F9w-dB-cSv"/>
@@ -145,11 +166,22 @@
                             <constraint firstItem="nsR-qy-OOu" firstAttribute="leading" secondItem="F9w-dB-cSv" secondAttribute="leading" constant="16" id="zhV-k1-6NV"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Detalle" id="IUQ-np-Ryg"/>
+                    <navigationItem key="navigationItem" title="Detalle" id="IUQ-np-Ryg">
+                        <barButtonItem key="rightBarButtonItem" title="Favorite" id="bTy-MG-XNz">
+                            <imageReference key="image" image="heart" catalog="system" renderingMode="original"/>
+                            <color key="tintColor" systemColor="systemRedColor"/>
+                            <connections>
+                                <action selector="setFavorite:" destination="9Hn-sC-NaT" id="NNL-1Q-Hyz"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="dateLabel" destination="F0v-dU-l8B" id="P0G-Ec-B6D"/>
+                        <outlet property="descriptionTextView" destination="Gsy-JM-eur" id="Cgs-SA-okj"/>
+                        <outlet property="favoriteBarButton" destination="bTy-MG-XNz" id="vp3-yZ-XP0"/>
                         <outlet property="logoImageView" destination="IEA-ho-K4S" id="0EH-U5-BUu"/>
                         <outlet property="nameLabel" destination="VdR-CK-RA8" id="okU-zz-CHz"/>
+                        <outlet property="timeSegmentControl" destination="ox9-hR-Jpo" id="xVQ-FV-ddS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kUG-2Z-aHA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -176,8 +208,16 @@
         </scene>
     </scenes>
     <resources>
+        <image name="heart" catalog="system" width="128" height="107"/>
+        <image name="heart.fill" catalog="system" width="128" height="107"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

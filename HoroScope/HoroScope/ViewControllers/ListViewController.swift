@@ -21,7 +21,16 @@ class ListViewController: UIViewController, UITableViewDataSource {
         horoscopeList = HoroscopeProvider.getAllHoroscopes()
         
         tableView.dataSource = self
+        
  
+    }
+    
+    //Actualizar los datos de la vista
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tableView.reloadData()
+        
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -33,12 +42,15 @@ class ListViewController: UIViewController, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! HoroscopeViewCell
                 
                 let horoscope = horoscopeList[indexPath.row]
+                cell.render(horoscope: horoscope)
+        
+                return cell
                 
-                cell.nameLabel.text = horoscope.name
+                /*cell.nameLabel.text = horoscope.name
                 cell.logoImageView.image = horoscope.logo
                 cell.dateLabel.text = horoscope.dates
         
-                return cell
+                return cell*/
     }
     
 

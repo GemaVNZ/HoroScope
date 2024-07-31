@@ -29,4 +29,33 @@ class HoroscopeProvider {
         return list
     }
     
+    
+    static func getHoroscopeLuck(horoscopeId: String, timePeriod: String) async throws -> String {
+        var result: String
+            let urlString = "https://horoscope-app-api.vercel.app/api/v1/get-horoscope/\(timePeriod)?sign=\(horoscopeId)"
+        
+                guard let url = URL(string: urlString) else {
+                    throw RuntimeError("Invalid URL")
+        }
+
+            let (data, _) = try await URLSession.shared.data(from: url)
+        
+                guard let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
+                    throw RuntimeError("Failed to parse JSON")
+        }
+        
+            let jsonData = json["data"] as? [String: String]
+        
+        result = jsonData?["horoscope_data"] ?? ""
+        
+        return result
+    }
+    
+    struct RuntimeError: Error {
+        let description: String
+            init(_ description: String) {
+                self.description = description
+           }
+       }
+    
 }
